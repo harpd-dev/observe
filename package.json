@@ -1,0 +1,35 @@
+{
+  "name": "@harpd/observe",
+  "version": "1.0.0",
+  "description": "Harpd x402 V2 observability + budget-control SDK for agent payments — the 4 lifecycle hooks, sitting above any Facilitator.",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "types": "src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.d.ts",
+      "import": "./src/index.js",
+      "require": "./src/index.js"
+    }
+  },
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "x402",
+    "agent-payments",
+    "observability",
+    "budget-control",
+    "harpd"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harpd-dev/observe.git"
+  },
+  "homepage": "https://harpd.com/docs/sdk",
+  "bugs": {
+    "url": "https://github.com/harpd-dev/observe/issues"
+  }
+}
