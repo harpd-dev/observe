@@ -58,6 +58,24 @@ const serverPlugin = harpdServerPlugin({
 // Register with your x402 V2 server middleware (e.g. @x402/paywall plugins).
 ```
 
+## Strict control-plane settlement
+
+Use `settlePayment` when every settlement must pass through Harpd policy,
+budget, idempotency, facilitator verification and the commercial ledger:
+
+```js
+import { settlePayment } from '@harpd/observe'
+
+await settlePayment({ apiKey: 'harpd_live_xxx', endpoint: 'https://api.harpd.com' }, {
+  agentId: 'agent-1', url: 'https://api.example.com/premium-data',
+  amount: 1_000_000, asset: 'eip155:8453/erc20:0xusdc', chain: 'eip155:8453',
+  idempotencyKey: 'order-123',
+})
+```
+
+Direct `after-settlement` ingest is rejected in production; use this method or
+`POST /v1/gateway/settle` instead.
+
 ## Contract
 
 - Events POST to `{endpoint}/v1/events` as a JSON array, authenticated by the

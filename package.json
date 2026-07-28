@@ -1,6 +1,6 @@
 {
   "name": "@harpd/observe",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Harpd x402 V2 observability + budget-control SDK for agent payments — the 4 lifecycle hooks, sitting above any Facilitator.",
   "type": "module",
   "main": "src/index.js",

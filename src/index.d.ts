@@ -81,6 +81,7 @@ export function flushQueue(
 
 export function harpdPlugin(config: HarpdConfig): HarpdExtension
 export function harpdServerPlugin(config: HarpdConfig): HarpdExtension
+export function settlePayment(config: HarpdConfig, ctx: PaymentContext & { idempotencyKey?: string; approvalToken?: string }): Promise<Record<string, unknown>>
 export function simulatePayment(
   plugin: HarpdExtension,
   ctx: PaymentContext

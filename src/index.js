@@ -157,6 +157,24 @@ export function harpdServerPlugin(config) {
 }
 
 /**
+ * Route a settlement through Harpd's policy/budget-controlled gateway. This is
+ * the strict path for agents that must not bypass the Harpd control plane.
+ * @param {HarpdConfig} config
+ * @param {PaymentContext & { idempotencyKey?: string; approvalToken?: string }} ctx
+ */
+export async function settlePayment(config, ctx) {
+  const endpoint = String(config.endpoint).replace(/\/$/, '')
+  const response = await fetch(`${endpoint}/v1/gateway/settle`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Harpd-Key': config.apiKey, 'Idempotency-Key': ctx.idempotencyKey || `${ctx.agentId}:${ctx.txHash || ctx.url}:${ctx.amount}` },
+    body: JSON.stringify({ agentId: ctx.agentId, endpoint: ctx.url, amount: num(ctx.amount), token: ctx.asset, chain: ctx.chain || '', txHash: ctx.txHash, facilitator: ctx.facilitator, approvalToken: ctx.approvalToken }),
+  })
+  const body = await response.json().catch(() => ({}))
+  if (!response.ok) throw new Error(body.error || `harpd_settle_${response.status}`)
+  return body
+}
+
+/**
  * Drive the 4 hooks in payment order — a stand-in for a real x402 V2
  * runtime, used by demos, tests, and the e2e harness. It exercises the
  * exact same hook contract a real Facilitator would trigger.
