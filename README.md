@@ -85,3 +85,14 @@ Direct `after-settlement` ingest is rejected in production; use this method or
   `eth_getTransactionReceipt` verification + reconciliation.
 
 See `harpd/v2` for the collector (Cloudflare Worker + D1 + Drizzle).
+
+---
+
+## About Harpd
+
+[Harpd](https://harpd.com) is the AI Cost Intelligence platform for the agent era — measure, optimize and control production AI spend, from **[cost per successful task](https://harpd.com/cost-per-successful-task/)** to agent-payment budgets ([x402](https://github.com/harpd-dev/observe) / USDC).
+
+- Website: <https://harpd.com>
+- GitHub org: <https://github.com/harpd-dev>
+- Contact: <mailto:harpdsupport@gmail.com>
+
